@@ -1,4 +1,6 @@
 import * as Font from 'expo-font'
+import { StyleSheet } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 export const getFonts = () => {
   return Font.loadAsync({
@@ -102,3 +104,44 @@ export const fontConfig = {
     }
   },
 }
+
+export const landingStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#00ff5e'
+  },
+  text: {
+    color: '#f6f6f6',
+  },
+  button: {
+    width: '60%',
+    margin: 15,
+    backgroundColor: '#ffffff',
+  },
+  buttonText: {
+    color: '#000000'
+  },
+  logo: {
+    height: 350,
+    width: 350,
+  }
+});
+
+export const registerStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textInput: {
+    backgroundColor: '#f2f2f2',
+    width: '80%',
+  },
+  header: {
+    fontSize: 50,
+    marginBottom: 50,
+    fontFamily: 'ubuntu-bold',
+  }
+})
