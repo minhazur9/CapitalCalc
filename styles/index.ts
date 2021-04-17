@@ -143,5 +143,13 @@ export const registerStyles = StyleSheet.create({
     fontSize: 50,
     marginBottom: 50,
     fontFamily: 'ubuntu-bold',
+  },
+  button: {
+    width: '80%',
+    backgroundColor: '#02c23c',
+    marginTop: 40
+  },
+  buttonText: {
+    color: '#f6f6f6'
   }
 })
