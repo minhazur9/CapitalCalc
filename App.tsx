@@ -1,21 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Keyboard, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper'
 import { fontConfig, getFonts } from './styles'
 import AppLoading from 'expo-app-loading'
+import { RootStackParamList } from './screens/RootStackParams';
+import { API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from '@env'
+import firebase from 'firebase'
+
+const firebaseConfig = {
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID
+};
+
+if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig)
+
 
 import Landing from './screens/Landing';
+import Register from './screens/Register';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RootStackParamList>()
 
 const theme = {
   ...DefaultTheme,
   roundness: 5,
   colors: {
-    ...DefaultTheme.colors
+    ...DefaultTheme.colors,
+    primary: '#42f59e'
   },
   fonts: configureFonts(fontConfig),
 }
@@ -27,8 +45,9 @@ export default function App() {
     return (
       <PaperProvider theme={theme}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login" headerMode="none">
-            <Stack.Screen name="Landing" component={Landing} />
+          <Stack.Navigator initialRouteName="Landing" headerMode="none">
+              <Stack.Screen name="Landing" component={Landing} />
+              <Stack.Screen name="Register" component={Register} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
