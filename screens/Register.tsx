@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextInput, Text, Button } from 'react-native-paper';
-import firebase from 'firebase'
+import {RegisterScreenNavigationProp} from './AuthStackParams';
+import firebase from 'firebase';
 
-import { registerStyles } from '../styles'
+import { registerStyles } from '../styles';
+
+type Props = {
+    navigation: RegisterScreenNavigationProp;
+};
 
 
-const Register = () => {
+
+const Register = ({ navigation }: Props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -15,12 +21,15 @@ const Register = () => {
     const [passwordConfirmError, setPasswordConfirmError] = useState(false)
     const [duplicateEmailError, setDuplicateEmailError] = useState(false)
 
+    const auth = firebase.auth()
+
     const signUp = () => {
         if (password !== passwordConfirm) setPasswordConfirmError(true)
         else {
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            auth.createUserWithEmailAndPassword(email, password)
                 .then((result) => {
                     console.log(result)
+                    navigation.navigate('Dashboard')
                 })
                 .catch((error) => {
                     switch (error.code) {
@@ -81,6 +90,7 @@ const Register = () => {
                 />
                 <TextInput
                     label="Confirm Password"
+                    secureTextEntry={true}
                     style={registerStyles.textInput}
                     value={passwordConfirm}
                     onChangeText={text => setPasswordConfirm(text)}

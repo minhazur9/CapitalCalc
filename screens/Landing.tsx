@@ -3,14 +3,14 @@ import { View, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 
 import { landingStyles } from '../styles';
-import { RegisterScreenNavigationProp } from './RootStackParams';
+import { LandingScreenNavigationProp } from './AuthStackParams';
 
 type Props = {
-    navigation: RegisterScreenNavigationProp;
+    navigation: LandingScreenNavigationProp;
 };
 
 
-const Landing = ({ navigation }: any) => {
+const Landing = ({ navigation }: Props) => {
     return (
         <View style={landingStyles.container} >
             <Image

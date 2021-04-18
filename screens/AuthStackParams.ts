@@ -1,21 +1,28 @@
 import { StackNavigationProp } from '@react-navigation/stack'
-export type RootStackParamList = {
-    Landing: { name: string },
-    Register: { name: string },
-    Login: {name: String}
+
+export type AuthStackParamList = {
+    Landing: undefined,
+    Register: undefined,
+    Login: undefined,
+    Dashboard: undefined
 };
 
 export type LandingScreenNavigationProp = StackNavigationProp<
-    RootStackParamList,
+    AuthStackParamList,
     'Landing'
 >;
 
 export type RegisterScreenNavigationProp = StackNavigationProp<
-    RootStackParamList,
+    AuthStackParamList,
     'Register'
 >;
 
 export type LoginScreenNavigationProp = StackNavigationProp<
-    RootStackParamList,
+    AuthStackParamList,
     'Login'
+>;
+
+export type MainNavigationProp = StackNavigationProp<
+    AuthStackParamList,
+    'Dashboard'
 >;

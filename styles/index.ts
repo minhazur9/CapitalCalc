@@ -180,4 +180,7 @@ export const loginStyles = StyleSheet.create({
     marginBottom: 30,
     fontFamily: 'ubuntu-bold',
   },
+  errorMessage: {
+    color: '#ff1100'
+  }
 })
