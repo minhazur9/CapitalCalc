@@ -10,7 +10,7 @@ type Props = {
 };
 
 
-const Landing: ReactNode = ({ navigation }: any) => {
+const Landing = ({ navigation }: any) => {
     return (
         <View style={landingStyles.container} >
             <Image
@@ -21,6 +21,7 @@ const Landing: ReactNode = ({ navigation }: any) => {
                 mode='contained'
                 style={landingStyles.button}
                 labelStyle={landingStyles.buttonText}
+                onPress={() => navigation.navigate('Login')}
             >
                 Login
             </Button>
@@ -32,8 +33,6 @@ const Landing: ReactNode = ({ navigation }: any) => {
             >
                 Register
             </Button>
-
-
         </View>
     )
 }

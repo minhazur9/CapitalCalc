@@ -156,3 +156,28 @@ export const registerStyles = StyleSheet.create({
     color: '#ff1100'
   }
 })
+
+export const loginStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textInput: {
+    backgroundColor: '#f2f2f2',
+    width: '80%',
+  },
+  button: {
+    width: '80%',
+    backgroundColor: '#02c23c',
+    marginTop: 40
+  },
+  buttonText: {
+    color: '#f6f6f6'
+  },
+  header: {
+    fontSize: 50,
+    marginBottom: 30,
+    fontFamily: 'ubuntu-bold',
+  },
+})

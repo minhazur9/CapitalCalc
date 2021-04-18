@@ -93,7 +93,7 @@ const Register = () => {
                     onPress={() => signUp()}
                 >
                     Sign up
-            </Button>
+                </Button>
             </View>
         </TouchableWithoutFeedback>
     )
