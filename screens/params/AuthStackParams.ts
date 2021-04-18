@@ -4,7 +4,7 @@ export type AuthStackParamList = {
     Landing: undefined,
     Register: undefined,
     Login: undefined,
-    Dashboard: undefined
+    Home: undefined
 };
 
 export type LandingScreenNavigationProp = StackNavigationProp<
@@ -22,7 +22,7 @@ export type LoginScreenNavigationProp = StackNavigationProp<
     'Login'
 >;
 
-export type MainNavigationProp = StackNavigationProp<
+export type HomeNavigationProp = StackNavigationProp<
     AuthStackParamList,
-    'Dashboard'
+    'Home'
 >;

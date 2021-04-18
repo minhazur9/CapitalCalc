@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextInput, Text, Button } from 'react-native-paper';
-import {RegisterScreenNavigationProp} from './AuthStackParams';
+import {RegisterScreenNavigationProp} from './params/AuthStackParams';
 import firebase from 'firebase';
 
 import { registerStyles } from '../styles';
@@ -29,7 +29,7 @@ const Register = ({ navigation }: Props) => {
             auth.createUserWithEmailAndPassword(email, password)
                 .then((result) => {
                     console.log(result)
-                    navigation.navigate('Dashboard')
+                    navigation.navigate('Home')
                 })
                 .catch((error) => {
                     switch (error.code) {

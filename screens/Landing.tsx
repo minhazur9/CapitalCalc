@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 
 import { landingStyles } from '../styles';
-import { LandingScreenNavigationProp } from './AuthStackParams';
+import { LandingScreenNavigationProp } from './params/AuthStackParams';
 
 type Props = {
     navigation: LandingScreenNavigationProp;

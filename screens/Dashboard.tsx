@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextInput, Text, Button } from 'react-native-paper';
+import { DashboardNavigationProp } from './params/HomeDrawerParams';
 import firebase from 'firebase'
 
-const Dashboard = () => {
+type Props = {
+    navigation: DashboardNavigationProp;
+};
 
-    const auth = firebase.auth()
-
-    const logOut = () => {
-        auth.signOut()
-            .then(() => {
-                console.log('signed out')
-            })
-    }
+const Dashboard = ({ navigation }: Props) => {
 
     return (
         <View>
             <Text>Dashboard</Text>
-            <Button onPress={() => logOut()} >
-                Logout
-            </Button>
         </View>
     )
 }

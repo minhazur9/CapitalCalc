@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextInput, Text, Button } from 'react-native-paper';
-import { LoginScreenNavigationProp } from './AuthStackParams';
+import { LoginScreenNavigationProp } from './params/AuthStackParams';
 import firebase from 'firebase';
 
 import { loginStyles } from '../styles';
@@ -22,8 +22,12 @@ const Login = ({ navigation }: Props) => {
     const logIn = () => {
         auth.signInWithEmailAndPassword(email, password)
             .then(cred => {
+                setEmail('')
+                setPassword('')
                 console.log(cred)
-                navigation.navigate('Dashboard')
+                navigation.reset({
+                    routes: [{ name: 'Home' }]
+                });
             })
             .catch(error => {
                 switch (error.code) {
@@ -32,13 +36,14 @@ const Login = ({ navigation }: Props) => {
                     case 'auth/wrong-password':
                         setPasswordError(true)
                     default:
+                        setPassword('')
                         console.log(error)
                 }
             })
     }
 
     const errorMessages = () => {
-        if(emailError || passwordError) return <Text style={loginStyles.errorMessage} >Invalid email or password!</Text>
+        if (emailError || passwordError) return <Text style={loginStyles.errorMessage} >Invalid email or password!</Text>
     }
 
     const resetErrors = () => {

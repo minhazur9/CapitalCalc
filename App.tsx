@@ -7,7 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper'
 import { fontConfig, getFonts } from './styles'
 import AppLoading from 'expo-app-loading'
-import { AuthStackParamList } from './screens/AuthStackParams';
+import { AuthStackParamList } from './screens/params/AuthStackParams';
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from '@env'
 import firebase from 'firebase'
 
@@ -27,7 +27,7 @@ if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig)
 import Landing from './screens/Landing';
 import Register from './screens/Register';
 import Login from './screens/Login';
-import Dashboard from './screens/Dashboard';
+import Home from './screens/Home';
 
 const Stack = createStackNavigator<AuthStackParamList>()
 const Drawer = createDrawerNavigator();
@@ -53,7 +53,7 @@ export default function App() {
             <Stack.Screen name="Landing" component={Landing} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Dashboard" component={Dashboard} />
+            <Stack.Screen name="Home" component={Home} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
