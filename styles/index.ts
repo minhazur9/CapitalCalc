@@ -141,7 +141,7 @@ export const registerStyles = StyleSheet.create({
   },
   header: {
     fontSize: 50,
-    marginBottom: 50,
+    marginBottom: 30,
     fontFamily: 'ubuntu-bold',
   },
   button: {
@@ -151,5 +151,8 @@ export const registerStyles = StyleSheet.create({
   },
   buttonText: {
     color: '#f6f6f6'
+  },
+  errorMessage: {
+    color: '#ff1100'
   }
 })
