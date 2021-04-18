@@ -25,6 +25,7 @@ if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig)
 
 import Landing from './screens/Landing';
 import Register from './screens/Register';
+import Login from './screens/Login';
 
 const Stack = createStackNavigator<RootStackParamList>()
 
@@ -48,6 +49,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Landing" headerMode="none">
               <Stack.Screen name="Landing" component={Landing} />
               <Stack.Screen name="Register" component={Register} />
+              <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
