@@ -11,7 +11,10 @@ export const getFonts = () => {
     'ubuntu-lightItalic': require('../assets/fonts/Ubuntu-LightItalic.ttf'),
     'ubuntu-medium': require('../assets/fonts/Ubuntu-Medium.ttf'),
     'ubuntu-mediumItalic': require('../assets/fonts/Ubuntu-MediumItalic.ttf'),
-    'ubuntu-regular': require('../assets/fonts/Ubuntu-Regular.ttf')
+    'ubuntu-regular': require('../assets/fonts/Ubuntu-Regular.ttf'),
+    'montserrat-regular': require('../assets/fonts/Montserrat-Regular.ttf'),
+    'montserrat-extraLight': require('../assets/fonts/Montserrat-ExtraLight.ttf'),
+    'montserrat-light': require('../assets/fonts/Montserrat-Light.ttf')
   })
 }
 
@@ -43,6 +46,15 @@ export const fontConfig = {
     },
     mediumItalic: {
       fontFamily: 'ubuntu-mediumItalic'
+    },
+    montserratRegular: {
+      fontFamily: 'montserrat-regular'
+    },
+    montserratLight: {
+      fontFamily: 'montserrat-light'
+    },
+    montserratExtraLight: {
+      fontFamily: 'montserrat-extraLight'
     }
   },
   android: {
@@ -72,6 +84,15 @@ export const fontConfig = {
     },
     mediumItalic: {
       fontFamily: 'ubuntu-mediumItalic'
+    },
+    montserratRegular: {
+      fontFamily: 'montserrat-regular'
+    },
+    montserratLight: {
+      fontFamily: 'montserrat-light'
+    },
+    montserratExtraLight: {
+      fontFamily: 'montserrat-extraLight'
     }
   },
   ios: {
@@ -101,6 +122,15 @@ export const fontConfig = {
     },
     mediumItalic: {
       fontFamily: 'ubuntu-mediumItalic'
+    },
+    montserratRegular: {
+      fontFamily: 'montserrat-regular'
+    },
+    montserratLight: {
+      fontFamily: 'montserrat-light'
+    },
+    montserratExtraLight: {
+      fontFamily: 'montserrat-extraLight'
     }
   },
 }
@@ -182,5 +212,25 @@ export const loginStyles = StyleSheet.create({
   },
   errorMessage: {
     color: '#ff1100'
+  }
+})
+
+export const dashboardStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  pieContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  budgetText: {
+    fontSize: 50,
+    fontFamily: 'montserrat-light',
+    color: '#3483fa',
+    textAlign: 'center',
+    position: 'absolute'
   }
 })

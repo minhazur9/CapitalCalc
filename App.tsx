@@ -45,11 +45,12 @@ const theme = {
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false)
+  const auth = firebase.auth()
   if (fontsLoaded) {
     return (
       <PaperProvider theme={theme}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Landing" headerMode="none">
+          <Stack.Navigator initialRouteName={auth.currentUser ? "Home" : "Home"} headerMode="none">
             <Stack.Screen name="Landing" component={Landing} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />

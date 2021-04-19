@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
-import { TextInput, Text, Button } from 'react-native-paper';
 import firebase from 'firebase';
 import Dashboard from './Dashboard';
-import { CommonActions } from '@react-navigation/native';
 
 const DrawerNav = createDrawerNavigator()
 
