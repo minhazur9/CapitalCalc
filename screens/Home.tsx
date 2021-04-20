@@ -12,7 +12,7 @@ const Home = (props: any) => {
         <>
             <DrawerNav.Navigator initialRouteName="Dashboard" drawerContent={() => <CustomDrawer navigation={props.navigation} />} >
                 <DrawerNav.Screen name="Dashboard" component={Dashboard} />
-                <DrawerNav.Screen name="EditBudget" component={EditBudget} />
+                <DrawerNav.Screen name="Edit Budget" component={EditBudget} />
             </DrawerNav.Navigator >
         </>
     )

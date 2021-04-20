@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { dashboardStyles } from '../styles'
-import { Appbar } from 'react-native-paper';
 
 
 import AppBar from '../components/AppBar'
 import PieChart from '../components/PieChart'
 
-const Dashboard = ({ navigation }) => {
+
+const Dashboard = (props: any) => {
     const route = useRoute()
     const [budget, setBudget] = useState('2000')
     const [budgetData, setBudgetData] = useState<category[]>([])
@@ -57,7 +57,7 @@ const Dashboard = ({ navigation }) => {
 
     return (
         <>
-            <AppBar navigation={navigation} />
+            <AppBar navigation={props.navigation} />
             <View style={dashboardStyles.container} >
                 <PieChart />
             </View >

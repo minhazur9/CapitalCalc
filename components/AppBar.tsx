@@ -8,7 +8,7 @@ const AppBar = ({ navigation }: any) => {
     const route = useRoute()
 
     return (
-        <Appbar.Header statusBarHeight={20}>
+        <Appbar.Header statusBarHeight={25}>
             <Appbar.Action icon="menu-open"
                 onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
             <Appbar.Content title={route.name} />

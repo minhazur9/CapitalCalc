@@ -3,21 +3,22 @@ import { View } from 'react-native'
 import { Drawer } from 'react-native-paper'
 import { HomeNavigationProp } from '../screens/params/HomeDrawerParams'
 import firebase from 'firebase'
+import { drawerStyles } from '../styles'
 
 type Props = {
     navigation: HomeNavigationProp;
 };
 
 
-const CustomDrawer = ({navigation}: Props) => {
+const CustomDrawer = ({ navigation }: Props) => {
 
     const auth = firebase.auth()
 
     const [active, setActive] = useState('dashboard');
 
     return (
-        <View >
-            <Drawer.Section title="Menu" >
+        < >
+            <Drawer.Section title="Menu" style={drawerStyles.container} >
                 <Drawer.Item
                     label="Dashboard"
                     active={active === 'dashboard'}
@@ -30,11 +31,12 @@ const CustomDrawer = ({navigation}: Props) => {
                     active={active === 'editBudget'}
                     onPress={() => {
                         setActive('editBudget')
-                        navigation.navigate("EditBudget")
+                        navigation.navigate("Edit Budget")
                     }} />
             </Drawer.Section>
 
-            <Drawer.Section>
+            <Drawer.Section
+                style={drawerStyles.options}>
                 <Drawer.Item
                     label="Logout"
                     onPress={() => {
@@ -44,7 +46,7 @@ const CustomDrawer = ({navigation}: Props) => {
                         });
                     }} />
             </Drawer.Section>
-        </View>
+        </>
     )
 }
 

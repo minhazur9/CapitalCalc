@@ -16,6 +16,7 @@ const Login = ({ navigation }: Props) => {
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
+    const [serverError, setServerError] = useState(false)
 
     const auth = firebase.auth()
 
@@ -32,21 +33,26 @@ const Login = ({ navigation }: Props) => {
             .catch(error => {
                 switch (error.code) {
                     case 'auth/invalid-email':
+                        setPassword('')
                         setEmailError(true)
                     case 'auth/wrong-password':
+                        setPassword('')
                         setPasswordError(true)
                     default:
                         setPassword('')
-                        console.log(error)
+                        setServerError(true)
                 }
             })
     }
 
     const errorMessages = () => {
         if (emailError || passwordError) return <Text style={loginStyles.errorMessage} >Invalid email or password!</Text>
+        else if (serverError) return <Text style={loginStyles.errorMessage} >There was a problem with logging in! Please try again</Text>
+
     }
 
     const resetErrors = () => {
+        setServerError(false)
         setEmailError(false)
         setPasswordError(false)
     }

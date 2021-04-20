@@ -250,3 +250,14 @@ export const editBudgetStyles = StyleSheet.create({
     alignItems: 'center'
   },
 })
+
+export const drawerStyles = StyleSheet.create({
+  container: {
+    paddingTop: 20
+  },
+  options: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
+  }
+})
