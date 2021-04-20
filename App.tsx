@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Keyboard, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper'
 import { fontConfig, getFonts } from './styles'
 import AppLoading from 'expo-app-loading'
@@ -30,9 +29,7 @@ import Login from './screens/Login';
 import Home from './screens/Home';
 
 const Stack = createStackNavigator<AuthStackParamList>()
-const Drawer = createDrawerNavigator();
-
-const theme = {
+export const theme = {
   ...DefaultTheme,
   roundness: 5,
   colors: {

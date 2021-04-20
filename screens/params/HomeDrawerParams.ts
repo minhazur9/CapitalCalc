@@ -1,16 +1,28 @@
 import { DrawerNavigationProp } from '@react-navigation/drawer'
 
-export type MainStackParamList = {
+export type HomeDrawerParamList = {
+    Home: undefined
     Dashboard: undefined
     Landing: undefined
+    EditBudget: undefined
 };
 
+export type HomeNavigationProp = DrawerNavigationProp<
+    HomeDrawerParamList,
+    'Home'
+>;
+
 export type DashboardNavigationProp = DrawerNavigationProp<
-    MainStackParamList,
+    HomeDrawerParamList,
     'Dashboard'
 >;
 
+export type EditBudgetNavigationProp = DrawerNavigationProp<
+    HomeDrawerParamList,
+    'EditBudget'
+>;
+
 export type LandingNavigationProp = DrawerNavigationProp<
-    MainStackParamList,
+    HomeDrawerParamList,
     'Landing'
 >;

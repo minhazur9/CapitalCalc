@@ -1,6 +1,6 @@
 import * as Font from 'expo-font'
 import { StyleSheet } from 'react-native';
-import { color } from 'react-native-reanimated';
+
 
 export const getFonts = () => {
   return Font.loadAsync({
@@ -231,6 +231,22 @@ export const dashboardStyles = StyleSheet.create({
     fontFamily: 'montserrat-light',
     color: '#3483fa',
     textAlign: 'center',
-    position: 'absolute'
+    position: 'absolute',
+    backgroundColor: '#f2f2f2',
+  },
+  labelText: {
+    fontFamily: 'montserrat-light',
+    color: 'white'
+  },
+  fadeIn: {
+    opacity: 1
   }
+})
+
+export const editBudgetStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 })

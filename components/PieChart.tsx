@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { Text } from 'react-native-paper';
+import { VictoryPie } from 'victory-native'
 import { dashboardStyles } from '../styles'
-import { Appbar } from 'react-native-paper';
 
+const PieChart = () => {
 
-import AppBar from '../components/AppBar'
-import PieChart from '../components/PieChart'
-
-const Dashboard = ({ navigation }) => {
-    const route = useRoute()
     const [budget, setBudget] = useState('2000')
     const [budgetData, setBudgetData] = useState<category[]>([])
 
@@ -56,13 +52,22 @@ const Dashboard = ({ navigation }) => {
     }, [])
 
     return (
-        <>
-            <AppBar navigation={navigation} />
-            <View style={dashboardStyles.container} >
-                <PieChart />
-            </View >
-        </>
+        <View style={dashboardStyles.pieContainer}>
+            <Text style={dashboardStyles.budgetText} >{budget}</Text>
+            <VictoryPie
+                data={budgetData}
+                innerRadius={80}
+                labelRadius={() => innerRadius + 60}
+                style={{
+                    labels: { fontSize: 10, fontFamily: 'montserrat-light', padding: 10, }
+                }}
+                labelPlacement='perpendicular'
+                radius={130}
+                padAngle={3}
+                colorScale={colorScale}
+            />
+        </View>
     )
 }
 
-export default Dashboard
+export default PieChart
