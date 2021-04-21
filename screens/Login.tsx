@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { TextInput, Text, Button } from 'react-native-paper';
+import { TextInput, Text, Button, IconButton } from 'react-native-paper';
 import { LoginScreenNavigationProp } from './params/AuthStackParams';
+import AppBar from '../components/AppBar'
 import firebase from 'firebase';
 
 import { loginStyles } from '../styles';
@@ -57,15 +58,9 @@ const Login = ({ navigation }: Props) => {
         setPasswordError(false)
     }
 
-
-    return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss()
-            resetErrors()
-        }} >
-            <View style={loginStyles.container} >
-                <Text style={loginStyles.header} >LOG IN</Text>
-                {errorMessages()}
+    const renderForm = () => {
+        return (
+            <>
                 <TextInput
                     label="Email"
                     style={loginStyles.textInput}
@@ -87,7 +82,24 @@ const Login = ({ navigation }: Props) => {
                 >
                     Login
                 </Button>
+            </>
+        )
+    }
+
+
+    return (
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss()
+            resetErrors()
+        }} >
+            <>
+            <AppBar navigation={navigation} />
+            <View style={loginStyles.container} >
+                <Text style={loginStyles.header} >LOG IN</Text>
+                {errorMessages()}
+                {renderForm()}
             </View>
+            </>
         </TouchableWithoutFeedback>
     )
 }

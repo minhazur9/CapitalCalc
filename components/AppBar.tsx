@@ -7,10 +7,32 @@ const AppBar = ({ navigation }: any) => {
 
     const route = useRoute()
 
+    const { name } = route;
+
+    const renderBackButton = () => {
+        return (
+            <>
+                <Appbar.Action icon={"arrow-left"}
+                    onPress={() => navigation.navigate('Landing')}
+                />
+            </>
+        )
+    }
+
+    const renderMenuButton = () => {
+        return (
+            <>
+                <Appbar.Action icon={"menu-open"}
+                    onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+                />
+
+            </>
+        )
+    }
+
     return (
         <Appbar.Header statusBarHeight={25}>
-            <Appbar.Action icon="menu-open"
-                onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
+            {name === 'Login' || name === 'Register' ? renderBackButton() : renderMenuButton()}
             <Appbar.Content title={route.name} />
         </Appbar.Header>
     )

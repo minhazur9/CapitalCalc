@@ -184,7 +184,7 @@ export const registerStyles = StyleSheet.create({
   },
   errorMessage: {
     color: '#ff1100'
-  }
+  },
 })
 
 export const loginStyles = StyleSheet.create({
@@ -218,29 +218,22 @@ export const loginStyles = StyleSheet.create({
 export const dashboardStyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
-  pieContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+})
+
+export const pieChartStyles = StyleSheet.create({
   budgetText: {
-    fontSize: 50,
+    fontSize: 40,
     fontFamily: 'montserrat-light',
     color: '#3483fa',
-    textAlign: 'center',
     position: 'absolute',
-    backgroundColor: '#f2f2f2',
+    textAlign: 'center',
+    height: '100%',
+    width: '100%',
+    top: '42%'
   },
-  labelText: {
-    fontFamily: 'montserrat-light',
-    color: 'white'
-  },
-  fadeIn: {
-    opacity: 1
-  }
 })
 
 export const editBudgetStyles = StyleSheet.create({
