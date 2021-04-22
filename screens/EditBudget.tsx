@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, TextInput } from 'react-native';
-import { Text, Card } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { EditBudgetNavigationProp } from './params/HomeDrawerParams'
 import { editBudgetStyles } from '../styles';
 import AppBar from '../components/AppBar'
@@ -10,7 +10,8 @@ type Props = {
 };
 
 const EditBudget = ({ navigation }: Props) => {
-    const [budgetData, setBudgetData] = useState(0)
+    const [budgetData, setBudgetData] = useState(500)
+    const [costData, setCostData] = useState(0)
     const [categories, setCategories] = useState<categoryData[]>([])
 
     type categoryData = {
@@ -19,6 +20,8 @@ const EditBudget = ({ navigation }: Props) => {
         amount: number
     }
 
+    const userBudget = 2000
+
     const data = [{
         symbol: 'REM',
         name: 'Rent',
@@ -26,23 +29,32 @@ const EditBudget = ({ navigation }: Props) => {
     }]
 
     useEffect(() => {
-        setCategories(data)
+        setBudgetData(userBudget)
     }, [])
 
     const remainingBudgetData = () => {
-        const { symbol, name, amount } = data[0]
+        const balance = budgetData - costData
         return (
             <View style={editBudgetStyles.item} >
                 <View style={editBudgetStyles.symbolColumn}>
-                    <TextInput style={editBudgetStyles.symbolData} >{symbol}</TextInput>
+                    <Text style={editBudgetStyles.symbolData} >INFO</Text>
                 </View>
 
                 <View style={editBudgetStyles.titleColumn}>
-                    <TextInput style={editBudgetStyles.nameData}>{name}</TextInput>
+                    <Text style={editBudgetStyles.nameData}>Income</Text>
+                    <Text style={editBudgetStyles.costData}>Costs</Text>
+                    <Text style={editBudgetStyles.nameData}>Balance</Text>
                 </View>
 
                 <View style={editBudgetStyles.amountColumn}>
-                    <TextInput style={editBudgetStyles.amountData}>{amount}</TextInput>
+                    <TextInput
+                        style={editBudgetStyles.amountData}
+                        onChangeText={text => setBudgetData(Number(text))}
+                    >
+                        {budgetData}
+                    </TextInput>
+                    <Text style={editBudgetStyles.costData}>-{costData}</Text>
+                    <Text style={editBudgetStyles.amountData}>{balance}</Text>
                 </View>
             </View>
         )
@@ -69,13 +81,17 @@ const EditBudget = ({ navigation }: Props) => {
     return (
         <>
             <AppBar navigation={navigation} />
-            <View style={editBudgetStyles.container} >
-                {renderColumns()}
-            </View>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} >
+                <View style={editBudgetStyles.container}>
+                    <View style={editBudgetStyles.columnContainer} >
+                        {renderColumns()}
+                    </View>
 
-            <View style={editBudgetStyles.itemList} >
-                {remainingBudgetData()}
-            </View>
+                    <View style={editBudgetStyles.itemList} >
+                        {remainingBudgetData()}
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
         </>
     )
 }

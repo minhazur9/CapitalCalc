@@ -248,6 +248,9 @@ export const editBudgetStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  columnContainer: {
+    flex: 1
+  },
   columns: {
     flex: 1,
     flexDirection: 'row',
@@ -277,7 +280,11 @@ export const editBudgetStyles = StyleSheet.create({
     marginTop: 2
   },
   item: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   symbolColumn: {
     flex: 1.5,
@@ -290,18 +297,23 @@ export const editBudgetStyles = StyleSheet.create({
   },
   symbolData: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 20,
     color: '#3483fa'
   },
   nameData: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 20,
     color: '#3483fa'
   },
   amountData: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 20,
     color: '#3483fa',
+  },
+  costData: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#e00000'
   }
 })
 

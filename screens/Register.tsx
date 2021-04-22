@@ -111,18 +111,18 @@ const Register = ({ navigation }: Props) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss()
-        }} >
-            <>
-                <AppBar navigation={navigation} />
+        <>
+            <AppBar navigation={navigation} />
+            <TouchableWithoutFeedback onPress={() => {
+                Keyboard.dismiss()
+            }} >
                 <View style={registerStyles.container} >
                     <Text style={registerStyles.header}>REGISTER</Text>
                     {renderErrorMessages()}
                     {renderForm()}
                 </View>
-            </>
-        </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+        </>
     )
 }
 

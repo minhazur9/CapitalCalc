@@ -13,10 +13,10 @@ type Props = {
 
 // Login screen
 const Login = ({ navigation }: Props) => {
-    const [email, setEmail] = useState('') 
-    const [password, setPassword] = useState('') 
-    const [emailError, setEmailError] = useState(false) 
-    const [passwordError, setPasswordError] = useState(false) 
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
     const [serverError, setServerError] = useState(false)
 
     const auth = firebase.auth()
@@ -92,19 +92,19 @@ const Login = ({ navigation }: Props) => {
 
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss()
-            resetErrors()
-        }} >
-            <>
+        <>
             <AppBar navigation={navigation} />
-            <View style={loginStyles.container} >
-                <Text style={loginStyles.header} >LOG IN</Text>
-                {renderErrorMessages()}
-                {renderForm()}
-            </View>
-            </>
-        </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => {
+                Keyboard.dismiss()
+                resetErrors()
+            }}>
+                <View style={loginStyles.container} >
+                    <Text style={loginStyles.header} >LOG IN</Text>
+                    {renderErrorMessages()}
+                    {renderForm()}
+                </View>
+            </TouchableWithoutFeedback>
+        </>
     )
 }
 
