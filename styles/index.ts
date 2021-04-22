@@ -249,11 +249,12 @@ export const editBudgetStyles = StyleSheet.create({
     flex: 1,
   },
   columns: {
+    flex: 1,
     flexDirection: 'row',
     marginTop: 5,
-    // paddingBottom: 2,
-    // borderBottomWidth: 1,
-    // borderBottomColor: 'black',
+    paddingBottom: 2,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
   },
   firstColumn: {
     flex: 1.5,
@@ -270,8 +271,37 @@ export const editBudgetStyles = StyleSheet.create({
     textAlign: 'center'
   },
   itemList: {
+    flex: 19,
     justifyContent: 'flex-start',
-    flexDirection: 'column'
+    alignItems: 'flex-start',
+    marginTop: 2
+  },
+  item: {
+    flexDirection: 'row'
+  },
+  symbolColumn: {
+    flex: 1.5,
+  },
+  titleColumn: {
+    flex: 1.5,
+  },
+  amountColumn: {
+    flex: 2,
+  },
+  symbolData: {
+    textAlign: 'center',
+    fontSize: 25,
+    color: '#3483fa'
+  },
+  nameData: {
+    textAlign: 'center',
+    fontSize: 25,
+    color: '#3483fa'
+  },
+  amountData: {
+    textAlign: 'center',
+    fontSize: 25,
+    color: '#3483fa',
   }
 })
 

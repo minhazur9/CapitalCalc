@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard, TextInput } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 import { EditBudgetNavigationProp } from './params/HomeDrawerParams'
 import { editBudgetStyles } from '../styles';
@@ -15,13 +15,13 @@ const EditBudget = ({ navigation }: Props) => {
 
     type categoryData = {
         symbol: string,
-        title: string,
+        name: string,
         amount: number
     }
 
     const data = [{
-        symbol: 'REN',
-        title: 'Rent',
+        symbol: 'REM',
+        name: 'Rent',
         amount: 500
     }]
 
@@ -30,11 +30,19 @@ const EditBudget = ({ navigation }: Props) => {
     }, [])
 
     const remainingBudgetData = () => {
-        const { symbol } = data[0]
+        const { symbol, name, amount } = data[0]
         return (
-            <View style={editBudgetStyles.Item} >
+            <View style={editBudgetStyles.item} >
                 <View style={editBudgetStyles.symbolColumn}>
-                    <Text>{symbol}</Text>
+                    <TextInput style={editBudgetStyles.symbolData} >{symbol}</TextInput>
+                </View>
+
+                <View style={editBudgetStyles.titleColumn}>
+                    <TextInput style={editBudgetStyles.nameData}>{name}</TextInput>
+                </View>
+
+                <View style={editBudgetStyles.amountColumn}>
+                    <TextInput style={editBudgetStyles.amountData}>{amount}</TextInput>
                 </View>
             </View>
         )
@@ -48,7 +56,7 @@ const EditBudget = ({ navigation }: Props) => {
                 </View>
 
                 <View style={editBudgetStyles.secondColumn} >
-                    <Text style={editBudgetStyles.columnText}>TITLE</Text>
+                    <Text style={editBudgetStyles.columnText}>NAME</Text>
                 </View>
 
                 <View style={editBudgetStyles.thirdColumn}>
@@ -64,7 +72,7 @@ const EditBudget = ({ navigation }: Props) => {
             <View style={editBudgetStyles.container} >
                 {renderColumns()}
             </View>
-            
+
             <View style={editBudgetStyles.itemList} >
                 {remainingBudgetData()}
             </View>
