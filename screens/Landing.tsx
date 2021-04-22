@@ -10,29 +10,47 @@ type Props = {
 };
 
 
+// Landing Screen
 const Landing = ({ navigation }: Props) => {
-    return (
-        <View style={landingStyles.container} >
+
+    // Renders the logo
+    const renderLogo = () => {
+        return (
             <Image
                 style={landingStyles.logo}
                 source={require('../assets/CapitalCalc-Logo.png')}
             />
-            <Button
-                mode='contained'
-                style={landingStyles.button}
-                labelStyle={landingStyles.buttonText}
-                onPress={() => navigation.navigate('Login')}
-            >
-                Login
-            </Button>
-            <Button
-                mode='contained'
-                style={landingStyles.button}
-                labelStyle={landingStyles.buttonText}
-                onPress={() => navigation.navigate('Register')}
-            >
-                Register
-            </Button>
+        )
+    }
+
+    // Renders the login and register buttons
+    const renderButtons = () => {
+        return (
+            <>
+                <Button
+                    mode='contained'
+                    style={landingStyles.button}
+                    labelStyle={landingStyles.buttonText}
+                    onPress={() => navigation.navigate('Login')}
+                >
+                    Login
+                </Button>
+
+                <Button
+                    mode='contained'
+                    style={landingStyles.button}
+                    labelStyle={landingStyles.buttonText}
+                    onPress={() => navigation.navigate('Register')}
+                >
+                    Register
+                </Button>
+            </>
+        )
+    }
+    return (
+        <View style={landingStyles.container} >
+            {renderLogo()}
+            {renderButtons()}
         </View>
     )
 }

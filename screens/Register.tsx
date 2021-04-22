@@ -3,7 +3,6 @@ import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextInput, Text, Button, IconButton } from 'react-native-paper';
 import { RegisterScreenNavigationProp } from './params/AuthStackParams';
 import firebase from 'firebase';
-
 import { registerStyles } from '../styles';
 import AppBar from '../components/AppBar';
 
@@ -13,6 +12,7 @@ type Props = {
 
 
 
+// Register Screen
 const Register = ({ navigation }: Props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,6 +24,7 @@ const Register = ({ navigation }: Props) => {
 
     const auth = firebase.auth()
 
+    // Run validation check and create a new user in firebase auth
     const signUp = () => {
         if (password !== passwordConfirm) setPasswordConfirmError(true)
         else {
@@ -53,6 +54,7 @@ const Register = ({ navigation }: Props) => {
         }
     }
 
+    // Reset error states
     const resetErrors = () => {
         setDuplicateEmailError
         setEmailError(false)
@@ -61,22 +63,18 @@ const Register = ({ navigation }: Props) => {
         console.log(passwordError)
     }
 
-    const errorMessages = () => {
+    // Render error messages
+    const renderErrorMessages = () => {
         if (emailError) return <Text style={registerStyles.errorMessage}>Invalid Email!</Text>
         else if (passwordError) return <Text style={registerStyles.errorMessage}>Password must be at least 6 characters long!</Text>
         else if (passwordConfirmError) return <Text style={registerStyles.errorMessage} >Passwords do not match!</Text>
         else if (duplicateEmailError) return <Text style={registerStyles.errorMessage} >Email already in use!</Text>
     }
 
-    return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss()
-        }} >
+    // Render registration form
+    const renderForm = () => {
+        return (
             <>
-            <AppBar navigation={navigation} />
-            <View style={registerStyles.container} >
-                <Text style={registerStyles.header}>REGISTER</Text>
-                {errorMessages()}
                 <TextInput
                     label="Email"
                     style={registerStyles.textInput}
@@ -108,7 +106,21 @@ const Register = ({ navigation }: Props) => {
                 >
                     Sign up
                 </Button>
-            </View>
+            </>
+        )
+    }
+
+    return (
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss()
+        }} >
+            <>
+                <AppBar navigation={navigation} />
+                <View style={registerStyles.container} >
+                    <Text style={registerStyles.header}>REGISTER</Text>
+                    {renderErrorMessages()}
+                    {renderForm()}
+                </View>
             </>
         </TouchableWithoutFeedback>
     )

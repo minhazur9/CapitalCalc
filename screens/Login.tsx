@@ -4,7 +4,6 @@ import { TextInput, Text, Button, IconButton } from 'react-native-paper';
 import { LoginScreenNavigationProp } from './params/AuthStackParams';
 import AppBar from '../components/AppBar'
 import firebase from 'firebase';
-
 import { loginStyles } from '../styles';
 
 type Props = {
@@ -12,15 +11,17 @@ type Props = {
 };
 
 
+// Login screen
 const Login = ({ navigation }: Props) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState(false)
-    const [passwordError, setPasswordError] = useState(false)
+    const [email, setEmail] = useState('') 
+    const [password, setPassword] = useState('') 
+    const [emailError, setEmailError] = useState(false) 
+    const [passwordError, setPasswordError] = useState(false) 
     const [serverError, setServerError] = useState(false)
 
     const auth = firebase.auth()
 
+    // Run validation check and log in user with firebase auth
     const logIn = () => {
         auth.signInWithEmailAndPassword(email, password)
             .then(cred => {
@@ -46,18 +47,21 @@ const Login = ({ navigation }: Props) => {
             })
     }
 
-    const errorMessages = () => {
+    // Render error messages 
+    const renderErrorMessages = () => {
         if (emailError || passwordError) return <Text style={loginStyles.errorMessage} >Invalid email or password!</Text>
         else if (serverError) return <Text style={loginStyles.errorMessage} >There was a problem with logging in! Please try again</Text>
 
     }
 
+    // Reset error states
     const resetErrors = () => {
         setServerError(false)
         setEmailError(false)
         setPasswordError(false)
     }
 
+    // Render login form
     const renderForm = () => {
         return (
             <>
@@ -96,7 +100,7 @@ const Login = ({ navigation }: Props) => {
             <AppBar navigation={navigation} />
             <View style={loginStyles.container} >
                 <Text style={loginStyles.header} >LOG IN</Text>
-                {errorMessages()}
+                {renderErrorMessages()}
                 {renderForm()}
             </View>
             </>

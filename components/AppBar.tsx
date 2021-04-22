@@ -3,27 +3,30 @@ import { Appbar } from 'react-native-paper';
 import { DrawerActions, useRoute } from '@react-navigation/native';
 
 
-const AppBar = ({ navigation }: any) => {
+// Custom Header
+const AppBar = ({ navigation: { goBack, dispatch } }: any) => {
 
     const route = useRoute()
 
     const { name } = route;
 
+    // Renders the back button to go back to previous screen
     const renderBackButton = () => {
         return (
             <>
                 <Appbar.Action icon={"arrow-left"}
-                    onPress={() => navigation.navigate('Landing')}
+                    onPress={() => goBack('Landing')}
                 />
             </>
         )
     }
 
+    // Renders the menu button to toggle the drawer
     const renderMenuButton = () => {
         return (
             <>
                 <Appbar.Action icon={"menu-open"}
-                    onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+                    onPress={() => dispatch(DrawerActions.toggleDrawer())}
                 />
 
             </>

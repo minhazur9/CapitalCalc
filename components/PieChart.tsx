@@ -4,10 +4,11 @@ import { Text } from 'react-native-paper';
 import { VictoryPie } from 'victory-native'
 import { pieChartStyles } from '../styles'
 
+// Render pie chart
 const PieChart = () => {
 
     const [budget, setBudget] = useState('$2000')
-    const [budgetData, setBudgetData] = useState<category[]>([])    
+    const [budgetData, setBudgetData] = useState<category[]>([])
 
     type category = {
         x: string,
@@ -42,7 +43,7 @@ const PieChart = () => {
             y: 400
         },
         {
-            x: "RE",
+            x: "REM",
             y: 900
         }
     ]
@@ -51,9 +52,9 @@ const PieChart = () => {
 
     screenWidth = Dimensions.get('window').width
 
-    radius = screenWidth/3
+    radius = screenWidth / 3
 
-    innerRadius = radius*(0.7)
+    innerRadius = radius * (0.7)
 
     useEffect(() => {
         setBudgetData(data)

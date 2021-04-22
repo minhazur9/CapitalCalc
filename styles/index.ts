@@ -2,6 +2,7 @@ import * as Font from 'expo-font'
 import { StyleSheet } from 'react-native';
 
 
+// Loads the fonts
 export const getFonts = () => {
   return Font.loadAsync({
     'ubuntu-bold': require('../assets/fonts/Ubuntu-Bold.ttf'),
@@ -18,6 +19,7 @@ export const getFonts = () => {
   })
 }
 
+// font configuration to load
 export const fontConfig = {
   web: {
     regular: {
@@ -135,6 +137,7 @@ export const fontConfig = {
   },
 }
 
+// Styles for the landing screen
 export const landingStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -159,6 +162,7 @@ export const landingStyles = StyleSheet.create({
   }
 });
 
+// Styles for the registration screen
 export const registerStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -187,6 +191,7 @@ export const registerStyles = StyleSheet.create({
   },
 })
 
+// Styles for the login screen
 export const loginStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -215,6 +220,7 @@ export const loginStyles = StyleSheet.create({
   }
 })
 
+// Styles for the dashboard
 export const dashboardStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -223,6 +229,7 @@ export const dashboardStyles = StyleSheet.create({
   },
 })
 
+// Styles for the pie chart
 export const pieChartStyles = StyleSheet.create({
   budgetText: {
     fontSize: 40,
@@ -236,14 +243,39 @@ export const pieChartStyles = StyleSheet.create({
   },
 })
 
+// Styles for the edit budget screen
 export const editBudgetStyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
+  columns: {
+    flexDirection: 'row',
+    marginTop: 5,
+    // paddingBottom: 2,
+    // borderBottomWidth: 1,
+    // borderBottomColor: 'black',
+  },
+  firstColumn: {
+    flex: 1.5,
+  },
+  secondColumn: {
+    flex: 1.5,
+  },
+  thirdColumn: {
+    flex: 2,
+  },
+  columnText: {
+    fontFamily: 'ubuntu-bold',
+    color: '#9c9c9c',
+    textAlign: 'center'
+  },
+  itemList: {
+    justifyContent: 'flex-start',
+    flexDirection: 'column'
+  }
 })
 
+// Styles for the custom drawer
 export const drawerStyles = StyleSheet.create({
   container: {
     paddingTop: 20

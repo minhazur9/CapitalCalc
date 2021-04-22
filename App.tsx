@@ -1,15 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Keyboard, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper'
 import { fontConfig, getFonts } from './styles'
 import AppLoading from 'expo-app-loading'
 import { AuthStackParamList } from './screens/params/AuthStackParams';
+// @ts-ignore
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from '@env'
 import firebase from 'firebase'
+import Landing from './screens/Landing';
+import Register from './screens/Register';
+import Login from './screens/Login';
+import Home from './screens/Home';
 
+// Configuration to connect to firebase
 const firebaseConfig = {
   apiKey: API_KEY,
   authDomain: AUTH_DOMAIN,
@@ -20,15 +26,12 @@ const firebaseConfig = {
   measurementId: MEASUREMENT_ID
 };
 
+// Check if firebase already running
 if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig)
 
-
-import Landing from './screens/Landing';
-import Register from './screens/Register';
-import Login from './screens/Login';
-import Home from './screens/Home';
-
 const Stack = createStackNavigator<AuthStackParamList>()
+
+// UI Theme
 export const theme = {
   ...DefaultTheme,
   roundness: 5,
@@ -43,6 +46,8 @@ export const theme = {
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false)
   const auth = firebase.auth()
+  
+  // Load fonts before loading app
   if (fontsLoaded) {
     return (
       <PaperProvider theme={theme}>
@@ -67,12 +72,3 @@ export default function App() {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
