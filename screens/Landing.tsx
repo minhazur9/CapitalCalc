@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 
 import { landingStyles } from '../styles';
@@ -48,10 +48,10 @@ const Landing = ({ navigation }: Props) => {
         )
     }
     return (
-        <View style={landingStyles.container} >
-            {renderLogo()}
-            {renderButtons()}
-        </View>
+            <View style={landingStyles.container} >
+                {renderLogo()}
+                {renderButtons()}
+            </View>
     )
 }
 

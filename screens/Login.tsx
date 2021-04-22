@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { TextInput, Text, Button, IconButton } from 'react-native-paper';
+import { TextInput, Text, Button } from 'react-native-paper';
 import { LoginScreenNavigationProp } from './params/AuthStackParams';
 import AppBar from '../components/AppBar'
 import firebase from 'firebase';
@@ -67,6 +67,7 @@ const Login = ({ navigation }: Props) => {
             <>
                 <TextInput
                     label="Email"
+                    keyboardType='email-address'
                     style={loginStyles.textInput}
                     value={email}
                     onChangeText={text => setEmail(text)}

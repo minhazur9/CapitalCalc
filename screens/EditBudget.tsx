@@ -48,8 +48,9 @@ const EditBudget = ({ navigation }: Props) => {
 
                 <View style={editBudgetStyles.amountColumn}>
                     <TextInput
+                        keyboardType='decimal-pad'
                         style={editBudgetStyles.amountData}
-                        onChangeText={text => setBudgetData(Number(text))}
+                        onChangeText={number => number === '' ? setBudgetData(0) : setBudgetData(Number(number))}
                     >
                         {budgetData}
                     </TextInput>

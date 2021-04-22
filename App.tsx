@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper'
@@ -46,7 +45,7 @@ export const theme = {
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false)
   const auth = firebase.auth()
-  
+
   // Load fonts before loading app
   if (fontsLoaded) {
     return (

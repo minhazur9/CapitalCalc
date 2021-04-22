@@ -77,6 +77,7 @@ const Register = ({ navigation }: Props) => {
             <>
                 <TextInput
                     label="Email"
+                    keyboardType='email-address'
                     style={registerStyles.textInput}
                     value={email}
                     onChangeText={text => setEmail(text)}
