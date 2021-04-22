@@ -223,7 +223,7 @@ export const loginStyles = StyleSheet.create({
 // Styles for the dashboard
 export const dashboardStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.5,
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
@@ -231,16 +231,23 @@ export const dashboardStyles = StyleSheet.create({
 
 // Styles for the pie chart
 export const pieChartStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   budgetText: {
     fontSize: 40,
     fontFamily: 'montserrat-light',
     color: '#3483fa',
     position: 'absolute',
     textAlign: 'center',
-    height: '100%',
-    width: '100%',
-    top: '42%'
   },
+  currencyText: {
+    color: '#3483fa',
+    fontFamily: 'montserrat-light',
+    fontSize: 40,
+  }
 })
 
 // Styles for the edit budget screen
@@ -314,7 +321,7 @@ export const editBudgetStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     color: '#e00000'
-  }
+  },
 })
 
 // Styles for the custom drawer

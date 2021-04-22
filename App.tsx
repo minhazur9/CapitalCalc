@@ -13,6 +13,8 @@ import Landing from './screens/Landing';
 import Register from './screens/Register';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import { Provider } from 'react-redux'
+import store from './store'
 
 // Configuration to connect to firebase
 const firebaseConfig = {
@@ -49,16 +51,18 @@ export default function App() {
   // Load fonts before loading app
   if (fontsLoaded) {
     return (
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName={auth.currentUser ? "Home" : "Home"} headerMode="none">
-            <Stack.Screen name="Landing" component={Landing} />
-            <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Home" component={Home} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
+      <Provider store={store} >
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName={auth.currentUser ? "Home" : "Home"} headerMode="none">
+              <Stack.Screen name="Landing" component={Landing} />
+              <Stack.Screen name="Register" component={Register} />
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Home" component={Home} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
+      </Provider>
     );
   }
   else {

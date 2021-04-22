@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, TouchableWithoutFeedback, Keyboard, TextInput } from 'react-native';
 import { Text } from 'react-native-paper';
-import { EditBudgetNavigationProp } from './params/HomeDrawerParams'
+import { EditBudgetNavigationProp } from './params/HomeDrawerParams';
 import { editBudgetStyles } from '../styles';
-import AppBar from '../components/AppBar'
+import AppBar from '../components/AppBar';
+import { RootState } from '../store'
+import { setBudgetData } from '../actions';
 
 type Props = {
     navigation: EditBudgetNavigationProp;
 };
 
 const EditBudget = ({ navigation }: Props) => {
-    const [budgetData, setBudgetData] = useState(500)
+    const budgetData = useSelector((state: RootState) => state.budgetData)
+    const dispatch = useDispatch()
     const [costData, setCostData] = useState(0)
-    const [categories, setCategories] = useState<categoryData[]>([])
 
     type categoryData = {
         symbol: string,
@@ -20,19 +23,11 @@ const EditBudget = ({ navigation }: Props) => {
         amount: number
     }
 
-    const userBudget = 2000
+    // useEffect(() => {
+    //     setBudgetData(userBudget)
+    // }, [])
 
-    const data = [{
-        symbol: 'REM',
-        name: 'Rent',
-        amount: 500
-    }]
-
-    useEffect(() => {
-        setBudgetData(userBudget)
-    }, [])
-
-    const remainingBudgetData = () => {
+    const renderBudgetData = () => {
         const balance = budgetData - costData
         return (
             <View style={editBudgetStyles.item} >
@@ -50,7 +45,7 @@ const EditBudget = ({ navigation }: Props) => {
                     <TextInput
                         keyboardType='decimal-pad'
                         style={editBudgetStyles.amountData}
-                        onChangeText={number => number === '' ? setBudgetData(0) : setBudgetData(Number(number))}
+                        onChangeText={number => number === '' ? dispatch(setBudgetData(0)) : dispatch(setBudgetData(Number(number)))}
                     >
                         {budgetData}
                     </TextInput>
@@ -89,7 +84,7 @@ const EditBudget = ({ navigation }: Props) => {
                     </View>
 
                     <View style={editBudgetStyles.itemList} >
-                        {remainingBudgetData()}
+                        {renderBudgetData()}
                     </View>
                 </View>
             </TouchableWithoutFeedback>

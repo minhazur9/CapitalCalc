@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Dimensions } from 'react-native';
 import { Text } from 'react-native-paper';
 import { VictoryPie } from 'victory-native'
 import { pieChartStyles } from '../styles'
+import { RootState } from '../store'
 
 // Render pie chart
 const PieChart = () => {
 
-    const [budget, setBudget] = useState('$2000')
+    const budget = useSelector((state: RootState) => state.budgetData)
     const [budgetData, setBudgetData] = useState<category[]>([])
 
     type category = {
@@ -61,8 +63,8 @@ const PieChart = () => {
     }, [])
 
     return (
-        <View>
-            <Text style={pieChartStyles.budgetText} >{budget}</Text>
+        <View style={pieChartStyles.container}>
+            <Text style={pieChartStyles.budgetText} ><Text style={pieChartStyles.currencyText}>$</Text>{budget}</Text>
             <VictoryPie
                 data={budgetData}
                 innerRadius={innerRadius}
