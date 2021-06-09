@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, TouchableWithoutFeedback, Keyboard, TextInput } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Button, Text, Modal, Portal, Provider } from 'react-native-paper';
 import { EditBudgetNavigationProp } from './params/HomeDrawerParams';
 import { editBudgetStyles } from '../styles';
 import AppBar from '../components/AppBar';
 import { RootState } from '../store'
 import { setBudgetData } from '../actions';
+
 
 type Props = {
     navigation: EditBudgetNavigationProp;
@@ -16,6 +17,7 @@ const EditBudget = ({ navigation }: Props) => {
     const budgetData = useSelector((state: RootState) => state.budgetData)
     const dispatch = useDispatch()
     const [costData, setCostData] = useState(0)
+    const [modalVisible, setModalVisible] = useState(false);
 
     type categoryData = {
         symbol: string,
@@ -68,9 +70,31 @@ const EditBudget = ({ navigation }: Props) => {
                 </View>
 
                 <View style={editBudgetStyles.thirdColumn}>
-                    <Text style={editBudgetStyles.columnText}>AMOUNT</Text>
+                    <Text style={editBudgetStyles.columnText}>AMOUNT <Text style={editBudgetStyles.currencyText}>$</Text></Text>
                 </View>
             </View>
+        )
+    }
+
+    const renderAddRowButton = () => {
+        return (
+            <Button mode="contained" onPress={() => setModalVisible(true)} >
+                Add Row
+            </Button>
+        )
+    }
+
+    const renderModal = () => {
+        return (
+            <Portal>
+                <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} contentContainerStyle={editBudgetStyles.addRowModal}>
+                    <View style={editBudgetStyles.modalRows}>
+                        <Text>Symbol</Text>
+                        <Text>Name</Text>
+                        <Text>Amount</Text>
+                    </View>
+                </Modal>
+            </Portal>
         )
     }
 
@@ -78,15 +102,21 @@ const EditBudget = ({ navigation }: Props) => {
         <>
             <AppBar navigation={navigation} />
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} >
-                <View style={editBudgetStyles.container}>
-                    <View style={editBudgetStyles.columnContainer} >
-                        {renderColumns()}
-                    </View>
+                <>
+                    {renderModal()}
+                    <View style={editBudgetStyles.container}>
+                        <View style={editBudgetStyles.columnContainer} >
+                            {renderColumns()}
+                        </View>
 
-                    <View style={editBudgetStyles.itemList} >
-                        {renderBudgetData()}
+                        <View style={editBudgetStyles.itemList} >
+                            {renderBudgetData()}
+                            <View style={editBudgetStyles.buttonContainer}>
+                                {renderAddRowButton()}
+                            </View>
+                        </View>
                     </View>
-                </View>
+                </>
             </TouchableWithoutFeedback>
         </>
     )

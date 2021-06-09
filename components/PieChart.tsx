@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, TextInput } from 'react-native';
 import { Text } from 'react-native-paper';
 import { VictoryPie } from 'victory-native'
 import { pieChartStyles } from '../styles'
@@ -22,6 +22,8 @@ const PieChart = () => {
     let colorScale: string[]
 
     let screenWidth: number
+
+    let screenHeight: number
 
     let radius: number
 
@@ -54,7 +56,10 @@ const PieChart = () => {
 
     screenWidth = Dimensions.get('window').width
 
-    radius = screenWidth / 3
+    screenHeight = Dimensions.get('window').height
+
+    if (screenWidth >= screenHeight * 0.70) radius = screenWidth / 4
+    else radius = screenWidth / 3
 
     innerRadius = radius * (0.7)
 
@@ -62,9 +67,16 @@ const PieChart = () => {
         setBudgetData(data)
     }, [])
 
+    const formatBudgetData = (budget: any) => {
+        let formattedData: String | Number = budget
+        if (budget > 99999) formattedData = (budget / 1000).toFixed(1) + 'K'
+        if (budget > 999999) formattedData = (budget / 1000000).toFixed(1) + 'M'
+        return formattedData
+    }
+
     return (
         <View style={pieChartStyles.container}>
-            <Text style={pieChartStyles.budgetText} ><Text style={pieChartStyles.currencyText}>$</Text>{budget}</Text>
+            <TextInput style={pieChartStyles.budgetText} ><Text style={pieChartStyles.currencyText}>$</Text>{formatBudgetData(budget)}</TextInput>
             <VictoryPie
                 data={budgetData}
                 innerRadius={innerRadius}

@@ -234,7 +234,8 @@ export const pieChartStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 2
   },
   budgetText: {
     fontSize: 40,
@@ -247,6 +248,7 @@ export const pieChartStyles = StyleSheet.create({
     color: '#3483fa',
     fontFamily: 'montserrat-light',
     fontSize: 40,
+    top: 100
   }
 })
 
@@ -322,6 +324,24 @@ export const editBudgetStyles = StyleSheet.create({
     fontSize: 20,
     color: '#e00000'
   },
+  currencyText: {
+    fontFamily: 'ubuntu-bold',
+    color: '#9c9c9c',
+  },
+  buttonContainer: {
+    width: 150,
+    height: 50,
+    top: 20,
+    marginLeft: 10
+  },
+  addRowModal: {
+    backgroundColor: 'white',
+    height: '20%'
+  },
+  modalRows: {
+    
+    backgroundColor: 'red'
+  }
 })
 
 // Styles for the custom drawer
