@@ -336,11 +336,38 @@ export const editBudgetStyles = StyleSheet.create({
   },
   addRowModal: {
     backgroundColor: 'white',
-    height: '20%'
+    height: '20%',
+    marginHorizontal: '10%'
   },
-  modalRows: {
-    
-    backgroundColor: 'red'
+  modalRowsContainer: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'space-around'
+  },
+  modalRow: {
+    flexDirection: 'row',
+    borderBottomColor: '#3483fa',
+    justifyContent: 'space-around',
+  },
+  modalRowText: {
+    fontFamily: 'ubuntu-bold',
+    color: '#9c9c9c',
+    fontSize: 15
+  },
+  rowInput: {
+    color: '#3483fa',
+    borderBottomWidth: 2,
+    borderStyle: 'solid',
+    borderBottomColor: '#3483fa',
+  },
+  modalButtonContainer: {
+    marginTop: 5,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  modalButton: {
+    color: 'black'
   }
 })
 

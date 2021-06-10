@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import { PieData } from '../types/PieDataInterface'
 
 export const getBudgetData = () => {
     return {
@@ -6,9 +6,9 @@ export const getBudgetData = () => {
     }
 }
 
-export const setBudgetData = (amount: number) => {
+export const setBudgetData = (budgetData: PieData[]) => {
     return {
         type: 'SET_BUDGET_DATA',
-        payload: amount
+        payload: budgetData
     }
 }

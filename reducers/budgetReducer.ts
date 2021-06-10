@@ -1,5 +1,5 @@
 
-const budgetReducer = (state = 500, action: any) => {
+const budgetReducer = (state = [{ x: "REM", y: 500 }], action: any) => {
     switch (action.type) {
         case 'SET_BUDGET_DATA':
             return action.payload
