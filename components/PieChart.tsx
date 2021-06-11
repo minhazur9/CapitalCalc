@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { View, Dimensions, TextInput } from 'react-native';
 import { Text } from 'react-native-paper';
 import { VictoryPie } from 'victory-native'
@@ -32,10 +32,6 @@ const PieChart = () => {
 
     innerRadius = radius * (0.7)
 
-    // useEffect(() => {
-    //     setBudgetData(budgetData)
-    // }, [])
-
     const formatBudgetData = (budget: any) => {
         let formattedData: String | Number = budget
         if (budget > 999999) formattedData = (budget / 1000000).toFixed(1) + 'M'
@@ -43,9 +39,11 @@ const PieChart = () => {
         return formattedData
     }
 
+    console.log(budget)
+
     return (
         <View style={pieChartStyles.container}>
-            <TextInput style={pieChartStyles.budgetText} ><Text style={pieChartStyles.currencyText}>$</Text>{formatBudgetData(budget[0].y)}</TextInput>
+            <TextInput style={pieChartStyles.budgetText} ><Text style={pieChartStyles.currencyText}>$</Text>{formatBudgetData(budget[0].total)}</TextInput>
             <VictoryPie
                 data={budget}
                 innerRadius={innerRadius}

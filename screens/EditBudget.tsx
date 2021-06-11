@@ -9,7 +9,6 @@ import { RootState } from '../store'
 import { setBudgetData } from '../actions';
 import { Category } from '../types/CategoryInterface';
 import { PieData } from '../types/PieDataInterface';
-import { min } from 'react-native-reanimated';
 
 
 type Props = {
@@ -21,17 +20,14 @@ const EditBudget = ({ navigation }: Props) => {
     const [existingRows, setExistingRows] = useState<Category[]>([])
     const dispatch = useDispatch()
     const [costData, setCostData] = useState(0)
+    const [balanceData, setBalanceData] = useState(0)
     const [modalVisible, setModalVisible] = useState(false);
     const [symbol, setSymbol] = useState("")
     const [name, setName] = useState("")
     const [amount, setAmount] = useState(0)
 
-    // useEffect(() => {
-    //     setBudgetData(userBudget)
-    // }, [])
-
     const renderBudgetData = () => {
-        const balance = budgetData[0].y - costData
+        const balance = budgetData[0].total - costData
         return (
             <View style={editBudgetStyles.item} >
                 <View style={editBudgetStyles.symbolColumn}>
@@ -50,7 +46,7 @@ const EditBudget = ({ navigation }: Props) => {
                         style={editBudgetStyles.amountData}
                         onChangeText={number => editBudgetData(number)}
                     >
-                        {budgetData[0].y}
+                        {budgetData[0].total}
                     </TextInput>
                     <Text style={editBudgetStyles.costData}>-{costData}</Text>
                     <Text style={editBudgetStyles.amountData}>{balance}</Text>
@@ -61,8 +57,9 @@ const EditBudget = ({ navigation }: Props) => {
 
     const editBudgetData = (budgetAmount: String) => {
         const budgetClone = budgetData.slice()
-        if (budgetAmount === '') budgetClone[0].y = 0
-        else budgetClone[0].y = Number(budgetAmount)
+        if (budgetAmount === '') budgetClone[0].total = 0
+        else budgetClone[0].total = Number(budgetAmount)
+        budgetClone[0].y = Number(budgetAmount) - costData
         dispatch(setBudgetData(budgetClone))
     }
 
@@ -133,7 +130,6 @@ const EditBudget = ({ navigation }: Props) => {
                                     const budgetDataClone = budgetData.slice()
                                     existingRowsClone[index].amount = Number(e.nativeEvent.text)
                                     budgetDataClone[index + 1].y = Number(e.nativeEvent.text)
-                                    console.log(budgetDataClone[index+1])
                                     dispatch(setBudgetData(budgetDataClone))
                                     setExistingRows(existingRowsClone)
                                     setNewCost()
@@ -159,10 +155,12 @@ const EditBudget = ({ navigation }: Props) => {
             amount
         }
         existingRowsClone.push(newRow)
+        setExistingRows(existingRowsClone)
+        const newCost = costData + Number(amount)
+        setCostData(newCost)
+        if (budgetClone[0].total) budgetClone[0].y = budgetClone[0].total - newCost
         budgetClone.push({ x: symbol, y: amount })
         dispatch(setBudgetData(budgetClone))
-        setExistingRows(existingRowsClone)
-        setCostData(costData + Number(amount))
     }
 
     const renderModal = () => {
@@ -189,8 +187,8 @@ const EditBudget = ({ navigation }: Props) => {
             <View style={editBudgetStyles.modalRow}>
                 <Text style={editBudgetStyles.modalRowText}>{category}</Text>
                 {category === 'Amount' && <TextInput placeholder="Enter Amount" style={editBudgetStyles.rowInput} keyboardType="decimal-pad" onChangeText={text => setAmount(Number(text))} ></TextInput>}
-                { category === 'Name' && <TextInput placeholder='Enter Name' style={editBudgetStyles.rowInput} onChangeText={text => setName(text)}></TextInput>}
-                { category === 'Symbol' && <TextInput placeholder='Enter Symbol' style={editBudgetStyles.rowInput} onChangeText={text => setSymbol(text)}></TextInput>}
+                {category === 'Name' && <TextInput placeholder='Enter Name' style={editBudgetStyles.rowInput} onChangeText={text => setName(text)}></TextInput>}
+                {category === 'Symbol' && <TextInput placeholder='Enter Symbol' style={editBudgetStyles.rowInput} onChangeText={text => setSymbol(text)}></TextInput>}
 
             </View>
         )
@@ -203,14 +201,11 @@ const EditBudget = ({ navigation }: Props) => {
             newCost += amount
         })
         setCostData(newCost)
+        const budgetClone = budgetData.slice()
+        budgetClone[0].y = budgetData[0].total - costData
+        dispatch(setBudgetData(budgetClone))
     }
 
-    const editCatagoryData = () => {
-        const categoryData = existingRows.map(row => {
-              const {symbol, amount} = row
-
-        })
-    }
     return (
         <>
             <AppBar navigation={navigation} />

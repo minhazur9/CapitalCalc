@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
 import { Drawer } from 'react-native-paper'
 import { HomeNavigationProp } from '../screens/params/HomeDrawerParams'
 import firebase from 'firebase'
